@@ -25,5 +25,11 @@ def home():
 def get_purchse_orders():
     return jsonify(purchase_orders)
 
+@app.route('/purchase_orders/<int:id>')
+def get_purchase_orders_by_id(id):
+    for po in purchase_orders:
+        if po['id'] == id:
+            return jsonify(po)
+    return jsonify({'message': 'Pedido do cliente {} não encontrado'.format(id)})
 
 app.run(port=4000)
